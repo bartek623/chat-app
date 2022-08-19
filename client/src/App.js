@@ -1,28 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 
-import ConversationBox from "./components/Conversation/ConversationBox";
-import io from "socket.io-client";
-const socket = io.connect("http://localhost:3001");
+import UserContext from "./store/UserContext";
+import Authentication from "./components/Authentication/Authentication";
+import ChatApp from "./components/Conversation/ChatApp";
 
 function App() {
-  const [messages, setMessages] = useState([]);
-
-  const sendMessage = (message = "Hello") => {
-    socket.emit("send_message", { message });
-
-    const data = { message, user: "from-me" };
-    setMessages((prevState) => [...prevState, data]);
-  };
-
-  useEffect(() => {
-    socket.on("receive_message", (data) => {
-      setMessages((prevState) => [...prevState, data]);
-    });
-  }, [socket]);
+  const userCtx = useContext(UserContext);
 
   return (
     <React.Fragment>
-      <ConversationBox messages={messages} sendMessage={sendMessage} />
+      {!userCtx.isLogged && <Authentication />}
+      {userCtx.isLogged && <ChatApp />}
     </React.Fragment>
   );
 }

@@ -13,7 +13,10 @@ function ConversationBox(props) {
 
   const messages = props.messages.map((message, i) => (
     <Message
-      isFirstMessage={props.messages[i - 1]?.user !== message.user}
+      isFirstMessage={
+        props.messages[i - 1]?.userid !== message.userid ||
+        props.messages[i - 1]?.type === "status"
+      }
       message={message}
       key={"m" + i}
     />

@@ -24,6 +24,7 @@ function MessageInput(props) {
         className={style["input"]}
         onChange={changeHandler}
         value={message}
+        placeholder="Your message"
       />
       <button className={style["submit-btn"]} type="submit">
         Send

@@ -15,6 +15,12 @@
   margin-bottom: 2px;
 }
 
+.status {
+  align-self: center;
+  font-size: 1.2rem;
+  color: #777;
+}
+
 .from-me {
   align-self: flex-end;
   background-color: rgba(197, 151, 0, 0.5);
@@ -34,7 +40,7 @@
   top: 0;
   left: 0;
 
-  transform: translate(10%, -75%);
+  transform: translate(1.6rem, -75%);
 
   color: #888;
   font-size: 1.4rem;
