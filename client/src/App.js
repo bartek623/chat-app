@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import ConversationBox from "./components/Conversation/ConversationBox";
 import io from "socket.io-client";
@@ -20,7 +20,11 @@ function App() {
     });
   }, [socket]);
 
-  return <ConversationBox messages={messages} sendMessage={sendMessage} />;
+  return (
+    <React.Fragment>
+      <ConversationBox messages={messages} sendMessage={sendMessage} />
+    </React.Fragment>
+  );
 }
 
 export default App;

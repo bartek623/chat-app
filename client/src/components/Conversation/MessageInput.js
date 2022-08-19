@@ -11,6 +11,8 @@ function MessageInput(props) {
   const submitHandler = function (e) {
     e.preventDefault();
 
+    if (message === "") return;
+
     setMessage("");
     props.sendMessage(message);
   };
