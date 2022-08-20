@@ -3,7 +3,7 @@ import { useContext, useRef } from "react";
 import UserContext from "../../store/UserContext";
 import style from "./Authentication.module.css";
 
-function Authentication() {
+function Authentication(props) {
   const usernameRef = useRef();
   const userCtx = useContext(UserContext);
 
@@ -13,7 +13,7 @@ function Authentication() {
 
     if (username !== "" && username.length > 16) return;
 
-    userCtx.login(userCtx.id, username);
+    userCtx.login(props.currentUserid, username);
   };
 
   return (
@@ -29,6 +29,9 @@ function Authentication() {
             placeholder="Your Name"
           />
         </form>
+        <p className={style["active-users"]}>
+          Active users: {props.activeUsers}
+        </p>
       </div>
     </div>
   );

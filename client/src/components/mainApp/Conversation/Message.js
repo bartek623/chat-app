@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import UserContext from "../../store/UserContext";
+import UserContext from "../../../store/UserContext";
 import style from "./Message.module.css";
 
 function Message(props) {
@@ -12,8 +12,6 @@ function Message(props) {
 
   const messageClass =
     props.message.userid === userCtx.userid ? "from-me" : "from-other";
-
-  console.log(props.isFirstMessage);
 
   return (
     <div

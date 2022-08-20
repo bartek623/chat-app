@@ -1,0 +1,25 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+
+  list-style: none;
+  padding: 2.4rem;
+  border-left: 1px solid rgba(221, 188, 0, 0.4);
+  border-right: 1px solid rgba(221, 188, 0, 0.4);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.heading {
+  padding: 1.2rem;
+  font-size: 1.8rem;
+  color: #ccc;
+  text-align: center;
+  border: 1px solid rgba(221, 188, 0, 0.4);
+}

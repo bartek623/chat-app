@@ -34,3 +34,9 @@
   font-size: 1.8rem;
   text-align: center;
 }
+
+.active-users {
+  margin-top: 3.2rem;
+  font-size: 1.8rem;
+  color: #777;
+}

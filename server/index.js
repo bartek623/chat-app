@@ -15,16 +15,28 @@ const io = new Server(server, {
   },
 });
 
-io.on("connection", (socket) => {
-  console.log(`User Connected: ${socket.id}`);
+const currentUsers = [];
 
+io.on("connection", (socket) => {
+  // User connected
+  console.log(`User Connected: ${socket.id}`);
+  currentUsers.push(socket.id);
+  socket.emit("update_users", currentUsers);
+  socket.broadcast.emit("update_users", currentUsers);
+
+  // New message
   socket.on("send_message", (data) => {
     socket.broadcast.emit("receive_message", data);
   });
 
+  // User disconnected
   socket.on("disconnect", () => {
     console.log("user disconnected");
     socket.broadcast.emit("user_disconnected", socket.id);
+
+    const userIndex = currentUsers.findIndex((id) => id === socket.id);
+    currentUsers.splice(userIndex, 1);
+    socket.broadcast.emit("update_users", currentUsers);
   });
 });
 
