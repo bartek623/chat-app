@@ -24,7 +24,7 @@ function App() {
         <Authentication
           activeUsers={users.length}
           currentUserid={socket.id}
-          users={users}
+          socket={socket}
         />
       )}
       {userCtx.isLogged && <ChatApp socket={socket} users={users} />}

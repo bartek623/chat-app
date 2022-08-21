@@ -40,6 +40,12 @@ function ChatApp(props) {
     socket.on("receive_message", (data) => {
       setMessages((prevState) => [...prevState, data]);
     });
+
+    // User disconnected
+    socket.on("user_disconnected", (user) => {
+      if (user.username)
+        sendMessage(`User ${user.username} disconnected.`, "status");
+    });
   }, [sendMessage, socket]);
 
   return (

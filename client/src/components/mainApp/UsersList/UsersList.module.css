@@ -5,7 +5,7 @@
   overflow-y: auto;
 
   list-style: none;
-  padding: 2.4rem;
+  /* padding: 2.4rem; */
   border-left: 1px solid rgba(221, 188, 0, 0.4);
   border-right: 1px solid rgba(221, 188, 0, 0.4);
 }
@@ -17,9 +17,13 @@
 }
 
 .heading {
-  padding: 1.2rem;
+  padding: 1.2rem 2.4rem;
   font-size: 1.8rem;
   color: #ccc;
   text-align: center;
   border: 1px solid rgba(221, 188, 0, 0.4);
+}
+
+.list li:nth-child(odd) {
+  background-color: #252525;
 }

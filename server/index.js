@@ -20,7 +20,7 @@ const currentUsers = [];
 io.on("connection", (socket) => {
   // User connected
   console.log(`User Connected: ${socket.id}`);
-  currentUsers.push(socket.id);
+  currentUsers.push({ userid: socket.id });
   socket.emit("update_users", currentUsers);
   socket.broadcast.emit("update_users", currentUsers);
 
@@ -29,12 +29,29 @@ io.on("connection", (socket) => {
     socket.broadcast.emit("receive_message", data);
   });
 
+  // User logged in by setting username
+  socket.on("user_logged_in", (userData) => {
+    const userIndex = currentUsers.findIndex(
+      (user) => user.userid === userData.userid
+    );
+    currentUsers.splice(userIndex, 1, {
+      username: userData.username,
+      userid: userData.userid,
+    });
+
+    socket.emit("update_users", currentUsers);
+    socket.broadcast.emit("update_users", currentUsers);
+  });
+
   // User disconnected
   socket.on("disconnect", () => {
     console.log("user disconnected");
-    socket.broadcast.emit("user_disconnected", socket.id);
+    const userIndex = currentUsers.findIndex(
+      (user) => user.userid === socket.id
+    );
 
-    const userIndex = currentUsers.findIndex((id) => id === socket.id);
+    socket.broadcast.emit("user_disconnected", currentUsers[userIndex]);
+
     currentUsers.splice(userIndex, 1);
     socket.broadcast.emit("update_users", currentUsers);
   });
