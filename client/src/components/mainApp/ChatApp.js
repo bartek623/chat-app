@@ -34,7 +34,7 @@ function ChatApp(props) {
 
   useEffect(() => {
     // User connection
-    sendMessage(`User ${userCtx.current.username} connected.`, "status");
+    sendMessage(`${userCtx.current.username} connected.`, "status");
 
     // New message received
     socket.on("receive_message", (data) => {
@@ -44,7 +44,7 @@ function ChatApp(props) {
     // User disconnected
     socket.on("user_disconnected", (user) => {
       if (user.username)
-        sendMessage(`User ${user.username} disconnected.`, "status");
+        sendMessage(`${user.username} disconnected.`, "status");
     });
   }, [sendMessage, socket]);
 
